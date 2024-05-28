@@ -289,8 +289,9 @@
         <ul>
           <li>Paper: <a href="https://arxiv.org/abs/2307.15043" target="_blank" rel="noopener noreferrer">
             Universal and Transferable Adversarial Attacks on Aligned Language Models</a></li>
-          <li>Brief Introduction: Given a (potentially harmful) user query, GCG trains and appends an adversarial suffix to the query 
-            that attempts to induce negative behavior from the target LLM. </li>
+          <li>Overview: GCG focuses on optimizing adversarial suffixes given inputs. This method employs gradient-based optimizations to tailor the suffixes in a way that induces LLMs to generate harmful outputs for each individual 
+            malicious user query. GCG attack outputs the tailored suffixes and append with the each harmful query to form the new jailbreak prompt. Such jailbreak prompts exploit model vulnerabilities, 
+            making them a potent tool for generating misaligned responses from even well-aligned models. </li>
         </ul>
       </div>
       <h3>AutoDAN</h3>
@@ -298,9 +299,8 @@
         <ul>
           <li>Paper: <a href="https://arxiv.org/abs/2310.04451" target="_blank" rel="noopener noreferrer">
             AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned Large Language Models</a></li>
-          <li>Brief Introduction: AutoDAN, an automatic stealthy jailbreak prompts generation framework based on a carefully designed 
-            hierarchical genetic algorithm. AUtoDAN preserves the meaningfulness and fluency (i.e., stealthiness) of jailbreak prompts, 
-            akin to handcrafted ones, while also ensuring automated deployment as introduced in prior token-level research like GCG.
+          <li>Overview: AutoDAN introduces a dynamic adversarial training framework that continuously adapts to model responses.It utilizes the Genetic Algorithm (GA) and Hierarchical Genetic Algorithm (HGA) 
+            to optimize iterative upon a prototype jailbreak prompt and produce high quality jailbreak prompt. Unlike GCG attack, AutoDAN produces interpretable jailbreak prompts.
           </li>
         </ul>
       </div>
@@ -309,10 +309,8 @@
         <ul>
           <li>Paper: <a href="https://arxiv.org/abs/2310.08419" target="_blank" rel="noopener noreferrer">
             Jailbreaking Black Box Large Language Models in Twenty Queries</a></li>
-          <li>Brief Introduction: PAIR uses an attacker LLM to automatically generate jailbreaks for a separate targeted LLM 
-            without human intervention. The attacker LLM iteratively queries the target LLM to update and refine a candidate 
-            jailbreak based on the comments and the rated score provided by another Judge model.
-            Empirically, PAIR often requires fewer than twenty queries to produce a successful jailbreak.</li>
+          <li>Overview: PAIR uses an attacker LLM to iteratively generate and refine jailbreak prompts with black-box access to a target LLM. This method demonstrates high efficiency to generate a semantic jailbreak. 
+            They bypass the need for extensive human involvement by automating the generation of prompt-level jailbreaks, blending creativity with algorithmic precision.</li>
         </ul>
       </div>
       <h3>TAP</h3>
@@ -320,7 +318,7 @@
         <ul>
           <li>Paper: <a href="https://arxiv.org/abs/2312.02119" target="_blank" rel="noopener noreferrer">
             Tree of Attacks: Jailbreaking Black-Box LLMs Automatically</a></li>
-          <li>Brief Introduction: TAP is similar to PAIR. The main difference is that 
+          <li>Overview: TAP is similar to PAIR. The main difference is that 
             the attacker in TAP iteratively refines candidate (attack) prompts using tree-of-thought 
             reasoning.</li>
         </ul>
@@ -330,15 +328,29 @@
         <ul>
           <li>Paper: <a href="https://arxiv.org/abs/2307.02483" target="_blank" rel="noopener noreferrer">
             Jailbroken: How Does LLM Safety Training Fail?</a></li>
-          <li>Brief Introduction: Encode the malicious user query into base64 format before using it to query the model.</li>
+          <li>Overview: This form of attack transform the original malicious user query into the Base64 format representation. 
+            It is shown in the work that such a transformation will lead the LLM to produce positive responses for such harmful request.</li>
         </ul>
       </div>
-      <h3>LRL</h3>
+      <h3>ICA</h3>
       <div>
         <ul>
-          <li>Paper: <a href="https://arxiv.org/abs/2310.02446" target="_blank" rel="noopener noreferrer">
-            Low-Resource Languages Jailbreak GPT-4</a></li>
-          <li>Brief Introduction: Translate the malicious user query into low-resource language before using it to query the model.</li>
+          <li>Paper: <a href="https://arxiv.org/pdf/2310.06387" target="_blank" rel="noopener noreferrer">
+            Jailbreak and Guard Aligned Language Models with Only Few In-Context Demonstrations</a></li>
+          <li>Overview:  ICA leverages In-Context Learning to manipulate the alignment of LLMs by adding harmful demonstrations within the input prompt. 
+            This approach effectively subverts LLMs with strategically crafted examples that coax the model into generating harmful content. 
+            ICA demonstrates a unique utilization of in-context examples to significantly alter model behavior without requiring modifications to the model's parameters, 
+            showcasing a novel method of influencing LLM safety through minimal yet targeted inputs.</li>
+        </ul>
+      </div>
+      <h3>Catastrophic</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2310.06987" target="_blank" rel="noopener noreferrer">
+            Catastrophic Jailbreak of Open-source LLMs via Exploiting Generation</a></li>
+          <li>Overview:  This method disrupts LLMs' alignment by tweaking generation configurations, such as decoding hyper-parameters and sampling methods. 
+            By altering these configurations, attackers can trigger misaligned responses in safety-tuned models, highlighting a critical vulnerability in current safety evaluation processes. 
+            This technique, can be categorized as "Decoding-Based Attack", in which achieving high Attack Success Rate at a fraction of the computational cost.</li>
         </ul>
       </div>
     </div>
@@ -346,33 +358,31 @@
 
   <div id="jailbreak-defenses">  
     <div id="accordion-defenses">
-      <h3>Perpleixty Filter</h3>
+      <h3>RPO</h3>
       <div>
         <ul>
-          <li>Paper: <a href="https://arxiv.org/abs/2309.00614" target="_blank" rel="noopener noreferrer">
-            Baseline Defenses for Adversarial Attacks Against Aligned Language Models</a></li>
-          <li>Brief Introduction: Perplexity Filter uses an LLM to compute the perplexity of the input query and rejects those
-            with high perplexity.</li>
+          <li>Paper: <a href="https://arxiv.org/abs/2401.17263" target="_blank" rel="noopener noreferrer">
+            Robust Prompt Optimization for Defending Language Models Against Jailbreaking Attacks</a></li>
+          <li>Overview: This is also a system prompt based defense, in which it alters the GCG attack and replace the objective of GCG into minimizing the distance between jailbreak query responses and refusal responses. 
+            Due to the uninterpretability of GCG suffix, RPO also outputs suffixes that come with high perplexity.</li>
         </ul>
       </div>
-      <h3>SmoothLLM</h3>
+      <h3>Goal Prioritization</h3>
       <div>
         <ul>
-          <li>Paper: <a href="https://arxiv.org/abs/2310.03684" target="_blank" rel="noopener noreferrer">
-            SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks</a></li>
-          <li>Brief Introduction: SmoothLLM perturbs the original input query to obtain several copies and aggregates 
-            the intermediate responses of the target LLM to these perturbed queries to give the final response to the
-            original query.
+          <li>Paper: <a href="https://arxiv.org/pdf/2311.09096" target="_blank" rel="noopener noreferrer">
+            Defending Large Language Models Against Jailbreaking Attacks Through Goal Prioritization</a></li>
+          <li>Overview: This is a hand-written system defense prompt. 
+            Particularly, Goal Prioritization ask the LLM to prioritize safety over helpfulness by enabling the model to have the process of Internal Thoughts before outputting the final responses.
           </li>
         </ul>
       </div>
-      <h3>Erase-Check</h3>
+      <h3>Default system Prompt</h3>
       <div>
         <ul>
-          <li>Paper: <a href="https://arxiv.org/abs/2309.02705" target="_blank" rel="noopener noreferrer">
-            Certifying LLM Safety against Adversarial Prompting</a></li>
-          <li>Brief Introduction: Erase-Check employs a model to check whether the original query or any of its erased subsentences
-          is harmful. The query would be rejected if the query or one of its sub-sentences is regarded as harmful by the safety checker</li>
+          <li>Paper: <a href="https://arxiv.org/abs/2401.18018" target="_blank" rel="noopener noreferrer">
+            On Prompt-Driven Safeguarding for Large Language Models</a></li>
+          <li>Overview: Similar to Goal Prioritization, system prompt is also a hand-written system defense prompt and it declares the role of LLM to be safe and should not generate harmful responses.</li>
         </ul>
       </div>
       <h3>Self-Reminder</h3>
@@ -380,7 +390,7 @@
         <ul>
           <li>Paper: <a href="https://assets.researchsquare.com/files/rs-2873090/v1_covered_eb589a01-bf05-4f32-b3eb-0d6864f64ad9.pdf?c=1702456350" target="_blank" rel="noopener noreferrer">
             Defending ChatGPT against Jailbreak Attack via Self-Reminder</a></li>
-          <li>Brief Introduction: Self-Reminder modifying the system prompt of the target LLM so that the model reminds itself to process 
+          <li>Overview: Self-Reminder modifying the system prompt of the target LLM so that the model reminds itself to process 
             and respond to the user in the context of being an aligned LLM.</li>
         </ul>
       </div>
