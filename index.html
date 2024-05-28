@@ -39,6 +39,28 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
+<script>
+    $( function() {
+      $( "#accordion-defenses" ).accordion({
+  heightStyle: "content"
+});
+    } );
+  </script>
+  <script>
+    $( function() {
+      $( "#accordion-attacks" ).accordion({
+  heightStyle: "content"
+});
+    } );
+  </script>
 </head>
 <body>
 
@@ -248,17 +270,8 @@
     <!--/ Paper video. -->
   <!-- </div> -->
 </section>
-<h2 id="what-is-jailbreak">What is Jailbreak?</h2>
-<p>Jailbreak attacks involve maliciously inserting or replacing tokens in the user instruction or rewriting it to bypass and circumvent 
-  the safety guardrails of aligned LLMs. A notable example is that a jailbroken LLM would be tricked into 
-  generating hate speech targeting certain groups of people, as demonstrated below.</p>
 
-<div class="container">
-<div id="jailbreak-intro" class="row align-items-center jailbreak-intro-sec">
-<img id="jailbreak-intro-img" src="./jailbreak.png" />
-</div>
-</div>
-
+<section class="section">
 <p>We summarized some recent advances in <strong>Jailbreak Attack</strong> and <strong>Jailbreak Defense</strong> in the below table: </p>
 <div id="tabs">
   <ul>
@@ -371,6 +384,7 @@
   </div>
   
 </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
