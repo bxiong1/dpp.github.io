@@ -248,7 +248,129 @@
     <!--/ Paper video. -->
   <!-- </div> -->
 </section>
+<h2 id="what-is-jailbreak">What is Jailbreak?</h2>
+<p>Jailbreak attacks involve maliciously inserting or replacing tokens in the user instruction or rewriting it to bypass and circumvent 
+  the safety guardrails of aligned LLMs. A notable example is that a jailbroken LLM would be tricked into 
+  generating hate speech targeting certain groups of people, as demonstrated below.</p>
 
+<div class="container">
+<div id="jailbreak-intro" class="row align-items-center jailbreak-intro-sec">
+<img id="jailbreak-intro-img" src="./jailbreak.png" />
+</div>
+</div>
+
+<p>We summarized some recent advances in <strong>Jailbreak Attack</strong> and <strong>Jailbreak Defense</strong> in the below table: </p>
+<div id="tabs">
+  <ul>
+    <li><a href="#jailbreak-attacks">Jailbreak Attack</a></li>
+    <li><a href="#jailbreak-defenses">Jailbreak Defense</a></li>
+  </ul>
+  <div id="jailbreak-attacks">  
+    <div id="accordion-attacks">
+      <h3>GCG</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2307.15043" target="_blank" rel="noopener noreferrer">
+            Universal and Transferable Adversarial Attacks on Aligned Language Models</a></li>
+          <li>Brief Introduction: Given a (potentially harmful) user query, GCG trains and appends an adversarial suffix to the query 
+            that attempts to induce negative behavior from the target LLM. </li>
+        </ul>
+      </div>
+      <h3>AutoDAN</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2310.04451" target="_blank" rel="noopener noreferrer">
+            AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned Large Language Models</a></li>
+          <li>Brief Introduction: AutoDAN, an automatic stealthy jailbreak prompts generation framework based on a carefully designed 
+            hierarchical genetic algorithm. AUtoDAN preserves the meaningfulness and fluency (i.e., stealthiness) of jailbreak prompts, 
+            akin to handcrafted ones, while also ensuring automated deployment as introduced in prior token-level research like GCG.
+          </li>
+        </ul>
+      </div>
+      <h3>PAIR</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2310.08419" target="_blank" rel="noopener noreferrer">
+            Jailbreaking Black Box Large Language Models in Twenty Queries</a></li>
+          <li>Brief Introduction: PAIR uses an attacker LLM to automatically generate jailbreaks for a separate targeted LLM 
+            without human intervention. The attacker LLM iteratively queries the target LLM to update and refine a candidate 
+            jailbreak based on the comments and the rated score provided by another Judge model.
+            Empirically, PAIR often requires fewer than twenty queries to produce a successful jailbreak.</li>
+        </ul>
+      </div>
+      <h3>TAP</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2312.02119" target="_blank" rel="noopener noreferrer">
+            Tree of Attacks: Jailbreaking Black-Box LLMs Automatically</a></li>
+          <li>Brief Introduction: TAP is similar to PAIR. The main difference is that 
+            the attacker in TAP iteratively refines candidate (attack) prompts using tree-of-thought 
+            reasoning.</li>
+        </ul>
+      </div>
+      <h3>Base64</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2307.02483" target="_blank" rel="noopener noreferrer">
+            Jailbroken: How Does LLM Safety Training Fail?</a></li>
+          <li>Brief Introduction: Encode the malicious user query into base64 format before using it to query the model.</li>
+        </ul>
+      </div>
+      <h3>LRL</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2310.02446" target="_blank" rel="noopener noreferrer">
+            Low-Resource Languages Jailbreak GPT-4</a></li>
+          <li>Brief Introduction: Translate the malicious user query into low-resource language before using it to query the model.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="jailbreak-defenses">  
+    <div id="accordion-defenses">
+      <h3>Perpleixty Filter</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2309.00614" target="_blank" rel="noopener noreferrer">
+            Baseline Defenses for Adversarial Attacks Against Aligned Language Models</a></li>
+          <li>Brief Introduction: Perplexity Filter uses an LLM to compute the perplexity of the input query and rejects those
+            with high perplexity.</li>
+        </ul>
+      </div>
+      <h3>SmoothLLM</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2310.03684" target="_blank" rel="noopener noreferrer">
+            SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks</a></li>
+          <li>Brief Introduction: SmoothLLM perturbs the original input query to obtain several copies and aggregates 
+            the intermediate responses of the target LLM to these perturbed queries to give the final response to the
+            original query.
+          </li>
+        </ul>
+      </div>
+      <h3>Erase-Check</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://arxiv.org/abs/2309.02705" target="_blank" rel="noopener noreferrer">
+            Certifying LLM Safety against Adversarial Prompting</a></li>
+          <li>Brief Introduction: Erase-Check employs a model to check whether the original query or any of its erased subsentences
+          is harmful. The query would be rejected if the query or one of its sub-sentences is regarded as harmful by the safety checker</li>
+        </ul>
+      </div>
+      <h3>Self-Reminder</h3>
+      <div>
+        <ul>
+          <li>Paper: <a href="https://assets.researchsquare.com/files/rs-2873090/v1_covered_eb589a01-bf05-4f32-b3eb-0d6864f64ad9.pdf?c=1702456350" target="_blank" rel="noopener noreferrer">
+            Defending ChatGPT against Jailbreak Attack via Self-Reminder</a></li>
+          <li>Brief Introduction: Self-Reminder modifying the system prompt of the target LLM so that the model reminds itself to process 
+            and respond to the user in the context of being an aligned LLM.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+</div>
 
 <section class="section">
   <div class="container is-max-desktop">
