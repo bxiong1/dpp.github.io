@@ -176,7 +176,7 @@
           display: flex;
           justify-content: left;
           align-items: left;
-          background-color: rgb(140, 21, 21);
+          background-color: rgb(27, 140, 21);
           padding: 7px;
           border-radius: 5px;
           margin-bottom: 2px;
@@ -619,7 +619,7 @@
   Demo:
   </h3>
   <div class="text-justify">
-  We present a few jailbreak examples of the performance of our trained DPPs under both LLAMA-2-7B-Chat and MISTRAL-7B-Instruct-v0.2 models</span>
+  We present a few jailbreak examples of the performance of our trained DPPs under both LLAMA-2-7B-Chat and MISTRAL-7B-Instruct-v0.2 models. <span class="red-text">Note that some of the response contents contain harmful information.</span>
   </div>
   <br />
   <!-- Adding a dropdown for example selection -->
@@ -634,7 +634,7 @@
   <div id="outputAndControlsContainer">
       <div id="controlsContainer">
           <div id="exampleSelectorContainer">
-              <label for="exampleSelector">Select an Example:</label>
+              <label for="exampleSelector">Select an Jailbreak Attack:</label>
               <select id="exampleSelector" onchange="handleChange('exampleSelector', 'model1Output', 'model2Output', 0, 1, model1Texts, model2Texts, userTexts, userTexts2)">
                   <option value="" disabled selected>Please click to select</option>  
                   <option value="example1">Example 1 -- GCG</option>
@@ -671,7 +671,7 @@
   <div id="outputAndControlsContainer2">
     <div id="controlsContainer2">
         <div id="exampleSelectorContainer2">
-            <label for="exampleSelector2">Select an Example:</label>
+            <label for="exampleSelector2">Select an Jailbreak Attack:</label>
             <select id="exampleSelector2" onchange="handleChange('exampleSelector2', 'model3Output', 'model4Output', 2, 3, model3Texts, model4Texts, userTexts3, userTexts4)">
               <option value="" disabled selected>Please click to select</option>  
               <option value="example1">Example 1 -- GCG</option>
@@ -706,6 +706,44 @@
 </section>
 
 
+<section class="section">
+  <div class="container is-max-desktop">
+  <div class="columns is-centered">
+  <div class="container-centered">
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+    <h3 id="ethics">Ethics and Disclosure</h3>
+    <div class="text-justify">
+    <ul>
+        <li>
+            <span style="font-weight: bold; font-size: larger;"><span class="red-text"><h1>Ethics Statement and Disclosure</h1>
+              <p>In the development and presentation of our research paper, which investigates methods for jailbreaking large language models (LLMs) through the use of our proposed Directed Prompting Process (DPP), we are committed to adhering to the highest ethical standards. Our research aims to explore the robustness and resilience of LLMs to advanced prompting strategies, thereby contributing to the broader understanding of their vulnerabilities and enhancing their security frameworks.</p>
+          
+              <h2>Ethical Considerations:</h2>
+              <ul>
+                  <li><strong>Security Research Purpose:</strong> The techniques and examples provided in this paper, including the jailbreak prompts demonstrated in the Demo section, are intended solely for academic and security research purposes. Our goal is to assist in the identification and subsequent mitigation of vulnerabilities within LLMs.</li>
+                  <li><strong>No Malicious Intent:</strong> The jailbreak prompts and methods discussed are not designed or intended for malicious use. They are developed to provide insights into potential security weaknesses, which can be crucial for developers and researchers working on strengthening the defensive capabilities of these models.</li>
+                  <li><strong>Responsible Disclosure:</strong> Prior to the publication of our findings, we engaged in a responsible disclosure process with the developers of the targeted LLMs. This was to ensure that they were aware of potential vulnerabilities and had the opportunity to address them, thereby minimizing the risk of exploitation.</li>
+              </ul>
+          
+              <h2>Disclosure:</h2>
+              <ul>
+                  <li><strong>Transparency:</strong> We disclose that the jailbreak prompts and methods outlined in our paper are theoretical and experimental in nature. While we demonstrate their effectiveness in controlled environments, real-world applications could differ based on various factors including model configurations and updates.</li>
+                  <li><strong>Limitations on Use:</strong> While we provide detailed descriptions and demonstrations of jailbreaking techniques, we do not endorse or encourage their use outside of a controlled, ethical research environment. We strongly advise against the application of these techniques in any manner that could potentially harm individuals or compromise the integrity and security of any system.</li>
+                  <li><strong>Collaboration and Compliance:</strong> Our research has been conducted in collaboration with ethical security researchers and with compliance to all relevant legal and ethical guidelines. We emphasize the importance of ongoing collaboration between academia, industry, and security professionals to continue improving the security of LLMs.</li>
+              </ul>
+          
+              <p>Through this statement, we affirm our commitment to ethical research practices and the responsible use of technology. We encourage other researchers and practitioners to approach this area of study with a similar level of integrity and caution.</p></span></span>
+    <br><br>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
@@ -719,35 +757,17 @@
 </section>
 
 
-<footer class="footer">
+<footer class="footer" style="background-color: white;">
   <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
-    </div>
+      <p class="text-muted">
+          Acknowledgements: The website template was borrowed from
+          <a href="https://llm-tuning-safety.github.io/"target="_blank">LLM Finetuning Risks</a>,
+          <a href="https://climatenerf.github.io/" target="_blank">ClimateNeRF</a>, 
+          <a href="http://mgharbi.com/" target="_blank">Michaël Gharbi</a>, 
+          <a href="https://dorverbin.github.io/refnerf/index.html" target="_blank">RefNeRF</a>, 
+          <a href="https://nerfies.github.io/" target="_blank">Nerfies</a> 
+          and <a href="https://hhsinping.github.io/svs/supp/visual_comparison.html" target="_blank">Semantic View Synthesis</a>.
+      </p>
   </div>
 </footer>
 
